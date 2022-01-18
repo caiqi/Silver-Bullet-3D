@@ -1,0 +1,9 @@
+work_dirs/
+example_mani_skill_data/
+full_mani_skill_state_data/
+full_mani_skill_data/
+partnet-mobility-dataset/
+submission_example/
+.vscode/
+.idea/
+mani_skill_learn.egg-info/
