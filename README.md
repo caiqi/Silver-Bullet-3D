@@ -34,7 +34,13 @@ Evaluation code and checkpoints are provided in [No_Interaction/evaluation](No_I
 PYTHONPATH=No_Interaction/evaluation/bucket_track1:$PYTHONPATH python evaluate_policy.py --env MoveBucket-v0 --level-range "0-300"
 ```
 
-[evaluate_policy.py](https://github.com/haosulab/ManiSkill/blob/main/mani_skill/tools/evaluate_policy.py) is from [ManiSkill](https://github.com/haosulab/ManiSkill) repo.
+[evaluate_policy.py](https://github.com/haosulab/ManiSkill/blob/main/mani_skill/tools/evaluate_policy.py) is from [ManiSkill](https://github.com/haosulab/ManiSkill) repo. Checkpoints can be downloaded from release page.
+|       Task        |            Code             |
+| :---------------: | :-------------------------: |
+|  OpenCabinetDoor  |  [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/door_track1.zip)  |
+| OpenCabinetDrawer | [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/drawer_track1.zip) |
+|    MoveBucket     | [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/bucket_track1.zip) |
+|     PushChair     | [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/chair_track1.zip)  |
 
 ## No Restriction Track
 The training and evaluation code is the same. 
