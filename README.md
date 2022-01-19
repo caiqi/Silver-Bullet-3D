@@ -35,8 +35,8 @@ PYTHONPATH=No_Interaction/evaluation/bucket_track1:$PYTHONPATH python evaluate_p
 ```
 
 [evaluate_policy.py](https://github.com/haosulab/ManiSkill/blob/main/mani_skill/tools/evaluate_policy.py) is from [ManiSkill](https://github.com/haosulab/ManiSkill) repo. Checkpoints can be downloaded from release page.
-|       Task        |            Code             |
-| :---------------: | :-------------------------: |
+|       Task        |                                              Models                                              |
+| :---------------: | :----------------------------------------------------------------------------------------------: |
 |  OpenCabinetDoor  |  [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/door_track1.zip)  |
 | OpenCabinetDrawer | [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/drawer_track1.zip) |
 |    MoveBucket     | [Checkpoint](https://github.com/caiqi/Silver-Bullet-3D/releases/download/v1.0/bucket_track1.zip) |
@@ -44,9 +44,9 @@ PYTHONPATH=No_Interaction/evaluation/bucket_track1:$PYTHONPATH python evaluate_p
 
 ## No Restriction Track
 The training and evaluation code is the same. 
-|       Task        |            Code             |
-| :---------------: | :-------------------------: |
-|  OpenCabinetDoor  |  [user_solution_door.py](No_Restriction/user_solution_door.py)  |
+|       Task        |                               Code                                |
+| :---------------: | :---------------------------------------------------------------: |
+|  OpenCabinetDoor  |   [user_solution_door.py](No_Restriction/user_solution_door.py)   |
 | OpenCabinetDrawer | [user_solution_drawer.py](No_Restriction/user_solution_drawer.py) |
 |    MoveBucket     | [user_solution_bucket.py](No_Restriction/user_solution_bucket.py) |
-|     PushChair     | [user_solution_chair.py](No_Restriction/user_solution_chair.py)  |
+|     PushChair     |  [user_solution_chair.py](No_Restriction/user_solution_chair.py)  |
