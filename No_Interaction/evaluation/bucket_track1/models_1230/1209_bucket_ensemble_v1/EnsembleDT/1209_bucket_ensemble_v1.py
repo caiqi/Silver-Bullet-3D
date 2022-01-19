@@ -3,7 +3,7 @@ stack_frame = 1
 num_heads = 4
 work_dir = './work_dirs/1209_bucket_ensemble_v1/EnsembleDT'
 dt_state_dim = 22
-resume_from = '/export/v-qcaii/darwin/ManiSkill-Learn-Yehao/work_dirs/ManiSkillModels3/bucket/model_300000.ckpt'
+resume_from = 'work_dirs/ManiSkillModels3/bucket/model_300000.ckpt'
 agent = dict(
     type='EnsembleDT',
     batch_size=128,
@@ -120,7 +120,7 @@ train_mfrl_cfg = dict(
     init_replay_buffers='',
     init_replay_with_split=[
         './full_mani_skill_data/compressed_data/RefineMoveBucket/',
-        '/export/v-qcaii/darwin/ManiSkill/mani_skill/assets/config_files/bucket_models.yml'
+        'ManiSkill/mani_skill/assets/config_files/bucket_models.yml'
     ])
 env_cfg = dict(
     type='gym',

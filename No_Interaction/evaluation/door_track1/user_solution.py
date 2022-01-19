@@ -275,7 +275,7 @@ class UserPolicy3(BasePolicy):
         self.env.set_env_mode(obs_mode=self.obs_mode)
         self.stack_frame = 1
 
-        cfg_path = str(pathlib.Path('./models/yehao_v3/drawer_door_pointformer_embed_conv.py').resolve())
+        cfg_path = str(pathlib.Path('./models/model_v3/drawer_door_pointformer_embed_conv.py').resolve())
         cfg = Config.fromfile(cfg_path)
         cfg.env_cfg['env_name'] = env_name
         obs_shape, action_shape, action_space = get_env_info(cfg.env_cfg)
@@ -285,7 +285,7 @@ class UserPolicy3(BasePolicy):
 
         self.agent = build_brl(cfg.agent)
         load_checkpoint(self.agent,
-                        str(pathlib.Path('./models/yehao_v3/model_600000.ckpt').resolve()),
+                        str(pathlib.Path('./models/model_v3/model_600000.ckpt').resolve()),
                         map_location='cpu'
                         )
         self.agent.to('cuda')  # dataparallel not done here

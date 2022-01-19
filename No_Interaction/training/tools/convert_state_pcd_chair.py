@@ -132,7 +132,7 @@ def parse_args():
     parser.add_argument('--env-name', default='MoveBucket_4000-v0',
                         help='The name of the environment')
     parser.add_argument('--traj-name',
-                        default='/export/home/v-qcaii/research/maniskill/ManiSkill-Learn/full_mani_skill_data/MoveBucket_state/MoveBucket_4000-v0.h5',
+                        default='ManiSkill-Learn/full_mani_skill_data/MoveBucket_state/MoveBucket_4000-v0.h5',
                         help='The generated trajectory with some policies')
     parser.add_argument('--output-name',
                         default='./debug_mani_skill/OpenCabinetDrawer_1045_link_0-v0/test/trajectory_pcd.h5',

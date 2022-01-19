@@ -4,9 +4,9 @@ num_heads = 4
 dt_state_dim = 13
 init_replay_with_split = [
     './full_mani_skill_data/OpenCabinetDoor/',
-    '/export/v-qcaii/darwin/ManiSkill/mani_skill/assets/config_files/cabinet_models_door.yml'
+    'ManiSkill/mani_skill/assets/config_files/cabinet_models_door.yml'
 ]
-resume_from = '/export/v-qcaii/darwin/ManiSkill-Learn/work_dirs/ManiSkillModels2/door/model_150000.ckpt'
+resume_from = 'ManiSkill-Learn/work_dirs/ManiSkillModels2/door/model_150000.ckpt'
 work_dir = './work_dirs/1201_door_dt_resume_pformer/DT'
 env_name = 'OpenCabinetDoor-v0'
 agent = dict(
@@ -122,7 +122,7 @@ train_mfrl_cfg = dict(
     init_replay_buffers='',
     init_replay_with_split=[
         './full_mani_skill_data/compressed_data/OpenCabinetDoor/',
-        '/export/v-qcaii/darwin/ManiSkill/mani_skill/assets/config_files/cabinet_models_door.yml'
+        'ManiSkill/mani_skill/assets/config_files/cabinet_models_door.yml'
     ])
 env_cfg = dict(
     type='gym',

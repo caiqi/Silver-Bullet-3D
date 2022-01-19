@@ -2,7 +2,7 @@ log_level = 'INFO'
 stack_frame = 1
 num_heads = 4
 work_dir = './work_dirs/1209_chair_ensemble_v1/EnsembleDT'
-resume_from = '/export/v-qcaii/darwin/ManiSkill-Learn-Yehao/work_dirs/ManiSkillModels3/chair/model_600000.ckpt'
+resume_from = 'work_dirs/ManiSkillModels3/chair/model_600000.ckpt'
 dt_state_dim = 22
 agent = dict(
     type='EnsembleDT',
@@ -116,7 +116,7 @@ train_mfrl_cfg = dict(
     init_replay_buffers='',
     init_replay_with_split=[
         './full_mani_skill_data/compressed_data/RefinePushChair/',
-        '/export/v-qcaii/darwin/ManiSkill/mani_skill/assets/config_files/chair_models.yml'
+        'ManiSkill/mani_skill/assets/config_files/chair_models.yml'
     ])
 env_cfg = dict(
     type='gym',

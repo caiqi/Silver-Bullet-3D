@@ -120,7 +120,7 @@ train_mfrl_cfg = dict(
     init_replay_buffers='',
     init_replay_with_split=[
         './full_mani_skill_data/compressed_data/RefineMoveBucket/',
-        '/export/v-qcaii/darwin/ManiSkill/mani_skill/assets/config_files/bucket_models.yml'
+        'ManiSkill/mani_skill/assets/config_files/bucket_models.yml'
     ])
 env_cfg = dict(
     type='gym',
