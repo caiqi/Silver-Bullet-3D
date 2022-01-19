@@ -5,9 +5,8 @@ import os
 import tqdm
 
 
-def process_cpt(h5file, saveall=False):
+def process_cpt(h5file, outfile, saveall=False):
     assert os.path.exists(h5file)
-    outfile = h5file + '.uint8cpt'
     print('process {} -> {}'.format(h5file, outfile))
     f_src = h5py.File(h5file, 'r')
     f_tar = h5py.File(outfile, 'w')
@@ -37,24 +36,23 @@ def process_cpt(h5file, saveall=False):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input', type=str, required=True)
+    parser.add_argument('--in_dir', type=str, required=True)
+    parser.add_argument('--out_dir', type=str, required=True)
     parser.add_argument('--filter', type=str)
     parser.add_argument('--all', default=False, action='store_true')
     args = parser.parse_args()
 
-    assert os.path.exists(args.input)
+    assert os.path.exists(args.in_dir)
 
-    if os.path.isfile(args.input):
-        process_cpt(args.input)
-    elif os.path.isdir(args.input):
-        filelist = os.listdir(args.input)
+    if os.path.isdir(args.in_dir):
+        filelist = os.listdir(args.in_dir)
         if args.filter is None:
             filelist = list(filter(lambda x: x.endswith('.h5') and 'uint8cpt' not in x, filelist))
         else:
             filelist = list(filter(lambda x: args.filter in x and 'uint8cpt' not in x, filelist))
         filelist = sorted(filelist)
         for file in filelist:
-            process_cpt(h5file=os.path.join(args.input, file), saveall=args.all)
+            process_cpt(h5file=os.path.join(args.in_dir, file), outfile=os.path.join(args.out_dir, file), saveall=args.all)
     else:
         raise NotImplementedError
     pass

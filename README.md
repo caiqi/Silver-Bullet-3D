@@ -17,7 +17,7 @@ git clone https://github.com/caiqi/Silver-Bullet-3D
 
 ### Data preparation
 * Download ManiSkill dataset from [here](https://github.com/haosulab/ManiSkill)
-* (Optional) Compress the data with [compress_data.py](No_Interaction/training/tools/compress_data.py)
+* Compress the data with [compress_data.sh](No_Interaction/training/scripts/compress_data.sh)
 
 ### Training
 Training code is provided in [No_Interaction/training](No_Interaction/training) folder. For example, to train MoveBucket model, using following script:
