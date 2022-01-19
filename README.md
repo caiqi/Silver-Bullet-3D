@@ -50,3 +50,6 @@ The training and evaluation code is the same.
 | OpenCabinetDrawer | [user_solution_drawer.py](No_Restriction/user_solution_drawer.py) |
 |    MoveBucket     | [user_solution_bucket.py](No_Restriction/user_solution_bucket.py) |
 |     PushChair     |  [user_solution_chair.py](No_Restriction/user_solution_chair.py)  |
+
+## Acknowledgements
+Thanks the contribution of [ManiSkill-Learn](https://github.com/haosulab/ManiSkill-Learn) and awesome PyTorch team.
