@@ -569,37 +569,3 @@ class UserPolicy(BasePolicy):
         except Exception:
             action = get_action()
         return action
-
-
-def visual():
-    render = False
-
-    env = gym.make('MoveBucket-v0')
-    env.set_env_mode(obs_mode='pointcloud', reward_type='sparse')
-    env._max_episode_steps = 200
-
-    agent = UserPolicy('MoveBucket-v0')
-
-    with open('user_solution_bucket_v7.log.txt', 'r') as f:
-        lines = f.readlines()
-        seeds = [int(l.strip().split(' ')[0]) for l in filter(lambda x: 'False' in x, lines)]
-
-    with open('user_solution_bucket_v8.log.txt', 'a') as f:
-        for level_idx in range(20000, 99999):
-            obs = env.reset(level=level_idx)
-            agent.reset()
-            if render:
-                env.render('human')
-            for step in range(20000):
-                action = agent.act(obs)
-                obs, reward, done, info = env.step(action)
-                if render:
-                    env.render('human')
-                if done:
-                    break
-            print('{} {}'.format(level_idx, info))
-            f.write('{} {}\n'.format(level_idx, info))
-
-
-if __name__ == '__main__':
-    visual()

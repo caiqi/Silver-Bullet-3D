@@ -3,10 +3,6 @@ import gym
 import mani_skill.env
 import numpy as np
 import copy
-import open3d
-
-import time
-import pandas as pd
 
 DEBUG = False
 
@@ -721,13 +717,6 @@ class ActMoveToPlatformXY(BaseAction):
         # remove chair foot
         mask_chair_foot = xyz[:, 2] <= 0.2
         xyz = xyz[np.logical_not(mask_chair_foot), :]
-        # locate cushion
-        # robot_xy = obs['agent'][24:26]
-        # dist2robot = pdist(robot_xy, xyz[:, :2])
-        # chair_far_xyz = xyz[np.argsort(dist2robot)[-100:], :]
-        # cushion_z = np.min(chair_far_xyz[:, 2])
-        # cushion_mask = np.logical_and(xyz[:, 2] > cushion_z, xyz[:, 2] < cushion_z + 0.1)
-        # xyz = xyz[cushion_mask, :]
 
         xy = xyz[:, :2]
         xy_min = np.min(xy, axis=0)
@@ -864,8 +853,6 @@ class PushChairPolicy(object):
         self.arm_feedback = ArmFeedBack(v=0.15, v_o=0.35)
 
         self.tasks = [
-            # TurnAndMove(20),
-            # ActMoveX(20),
             ActFixedMove(35, move_x=1, move_z=-1),
             ActAdjustHeightV2(),
             ActInitPose(self.finger_open),
@@ -922,70 +909,3 @@ class UserPolicy(BasePolicy):
         except Exception:
             action = get_action()
         return action
-
-
-def push_chair_evaluator(eval_num, seed_list=None, choose_failure=False, log_write=False, print_detail=False, seed_eva_id=None):
-    ### set up environments 
-    env = gym.make('PushChair-v0')
-    env.set_env_mode(obs_mode='pointcloud', reward_type='sparse')
-    print(env.observation_space)
-    print(env.action_space)
-    env._max_episode_steps = 200
-    
-    if log_write:
-        time_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        fw_log = open('./log/PushChair-rule.%s.log'%(time_str),'w', 1)
-
-    if seed_list:
-        pass_seed = []
-        df = pd.read_csv(seed_list,sep=' ',header=None)
-        for idx, item in df.iterrows():
-            seed = item[1]
-            suc = item[5]
-            if choose_failure:
-                if not suc: pass_seed.append(seed) 
-            else: pass_seed.append(seed) 
-
-    chairpolicy = UserPolicy('PushChair')  
-    succeed = 0
-    static = 0
-    closeto = 0
-    seed_start = 289
-    if seed_list: eval_num = len(pass_seed)
-    if seed_eva_id: eval_num = 1
-    for seed_id in range(eval_num):
-        if seed_eva_id: level_seed = seed_eva_id
-        elif seed_list: level_seed = pass_seed[seed_id]
-        else: level_seed = seed_id
-        obs = env.reset(level=level_seed)
-        chairpolicy.reset()
-        final_info = None
-        while (chairpolicy.agent.step_cnt == 0) or ((chairpolicy.agent.step_cnt < 200) and (not info['eval_info']['success'])):
-            env.render('human')
-            action = chairpolicy.act(obs)
-            obs, reward, done, info = env.step(action)
-            final_info = info
-        print(chairpolicy.agent.step_cnt)
-        if info['eval_info']['success']: succeed += 1
-        if info['eval_info']['chair_static']: static +=1
-        if info['eval_info']['chair_close_to_target']: closeto += 1
-        if log_write:
-            fw_log.write('level_seed: %d steps: %d succeed: %d\n'%(level_seed, chairpolicy.agent.step_cnt, info['eval_info']['success']))
-        print('level_seed: %d steps: %d succeed: %d'%(level_seed, chairpolicy.agent.step_cnt, info['eval_info']['success']))
-        if print_detail:
-            print(final_info)
-
-    print('Succeed rate: %f'%(succeed/eval_num))
-    print('Static rate: %f'%(static/eval_num))
-    print('Closeto rate: %f'%(closeto/eval_num))
-    if log_write: fw_log.close()
-
-
-def main():
-    eval_num = 9999
-    push_chair_evaluator(eval_num, seed_list=None, choose_failure=False, log_write=True, print_detail=True)
-
-
-if __name__ == '__main__':
-    #visual()
-    main()
